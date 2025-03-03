@@ -1,7 +1,56 @@
 ---
 layout: layout.liquid
-title: 11ty Boilerplate
+title: Home
 ---
 
-<h1>Yet Another 11ty <strong>Boilerplate</strong></h1>
-<img alt="pine" src="/images/pine.png" width="50" />
+<!-- Page Title -->
+<h1 class="text-4xl font-bold text-gray-900 text-center mt-8">Demo Site Using AI</h1>
+
+<p class="text-lg text-gray-700 text-center mt-4">
+  This is a demonstration of Alpine.js, Tailwind, and fetching data from an API.
+</p>
+
+<!-- Fetch and display latest 5 posts -->
+<div x-data="{ posts: [] }" 
+     x-init="fetch('https://dummyjson.com/posts')
+     .then(res => res.json())
+     .then(data => posts = data.posts.slice(0, 5))" 
+     class="max-w-5xl mx-auto mt-12 px-6">
+
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Latest Posts</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <template x-for="post in posts" :key="post.id">
+      <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+        <h3 class="text-xl font-bold text-gray-900" x-text="post.title"></h3>
+        <p class="text-gray-600 mt-2 line-clamp-3" x-text="post.body"></p>
+        <a :href="'https://dummyjson.com/posts/' + post.id" class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow">
+          Read More
+        </a>
+      </div>
+    </template>
+  </div>
+</div>
+
+<!-- Fetch and display latest 5 users -->
+<div x-data="{ users: [] }" 
+     x-init="fetch('https://dummyjson.com/users')
+     .then(res => res.json())
+     .then(data => users = data.users.slice(0, 5))" 
+     class="max-w-5xl mx-auto mt-16 px-6">
+
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Users</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <template x-for="user in users" :key="user.id">
+      <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+        <h3 class="text-xl font-bold text-gray-900" x-text="user.firstName + ' ' + user.lastName"></h3>
+        <p class="text-gray-600 mt-2" x-text="'Email: ' + user.email"></p>
+        <p class="text-gray-600 mt-2" x-text="'Age: ' + user.age"></p>
+        <a :href="'https://dummyjson.com/users/' + user.id" class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow">
+          View Profile
+        </a>
+      </div>
+    </template>
+  </div>
+</div>

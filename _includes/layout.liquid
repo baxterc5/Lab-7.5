@@ -1,5 +1,5 @@
 ---
-title: 11ty Boilerplate
+title: AI Webpage
 ---
 
 <!DOCTYPE html>
@@ -8,15 +8,34 @@ title: 11ty Boilerplate
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/styles/screen.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <!-- Alpine Fetch -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/fetch@latest/dist/cdn.min.js"></script>
+
+  <link rel="stylesheet" href="/styles/screen.css"> <!-- Your custom styles -->
 </head>
-<body>
-  <nav>
-    <ul>
-      <li><a href="/" title="Go home">Home</a></li>
-      <li><a href="/about/" title="About the boilerplate">About</a></li>
-    </ul>
+<body class="bg-gray-50">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-blue-200 w-full py-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-center">
+      <ul class="flex space-x-8 text-lg font-semibold">
+        <li><a href="/" class="text-white hover:text-gray-300">Home</a></li>
+        <li><a href="/ai-reflection/" class="text-white hover:text-gray-300">AI Reflection</a></li>
+      </ul>
+    </div>
   </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto p-6">
     {{ content }}
+  </div>
+
 </body>
 </html>
