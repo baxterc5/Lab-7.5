@@ -3,54 +3,64 @@ layout: layout.liquid
 title: Home
 ---
 
-<!-- Page Title -->
-<h1 class="text-4xl font-bold text-gray-900 text-center mt-8">Demo Site Using AI</h1>
+<!-- Page Title - Add gradient background and improved spacing -->
+<div class="bg-blue-200/80 py-8 mb-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-900 text-center mt-6 hover:text-indigo-700 transition-colors">Demo Site Using AI</h1>
 
-<p class="text-lg text-gray-700 text-center mt-4">
-  This is a demonstration of Alpine.js, Tailwind, and fetching data from an API.
-</p>
+    <p class="text-lg text-gray-700 text-center mt-4 max-w-2xl mx-auto">
+        This is a demonstration of Alpine.js, Tailwind, and fetching data from an API.
+    </p>
+</div>
 
-<!-- Fetch and display latest 5 posts -->
+<!-- Posts Section - Add hover effects and improved card styling -->
 <div x-data="{ posts: [] }" 
      x-init="fetch('https://dummyjson.com/posts')
      .then(res => res.json())
-     .then(data => posts = data.posts.slice(0, 5))" 
+     .then(data => posts = data.posts.slice(0, 6))" 
      class="max-w-5xl mx-auto mt-12 px-6">
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Latest Posts</h2>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center relative">
+        Latest Posts
+        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-500"></span>
+    </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <template x-for="post in posts" :key="post.id">
-      <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-        <h3 class="text-xl font-bold text-gray-900" x-text="post.title"></h3>
-        <p class="text-gray-600 mt-2 line-clamp-3" x-text="post.body"></p>
-        <a :href="'https://dummyjson.com/posts/' + post.id" class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow">
-          Read More
-        </a>
-      </div>
-    </template>
-  </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <template x-for="post in posts" :key="post.id">
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 hover:border-blue-300">
+                <h3 class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors" x-text="post.title"></h3>
+                <p class="text-gray-600 mt-2 line-clamp-3" x-text="post.body"></p>
+                <a :href="'https://dummyjson.com/posts/' + post.id" 
+                   class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow hover:bg-blue-300 transform hover:-translate-y-0.5 transition-all">
+                    Read More
+                </a>
+            </div>
+        </template>
+    </div>
 </div>
 
-<!-- Fetch and display latest 5 users -->
+<!-- Users Section - Add improved card styling and animations -->
 <div x-data="{ users: [] }" 
      x-init="fetch('https://dummyjson.com/users')
      .then(res => res.json())
-     .then(data => users = data.users.slice(0, 5))" 
-     class="max-w-5xl mx-auto mt-16 px-6">
+     .then(data => users = data.users.slice(0, 6))" 
+     class="max-w-5xl mx-auto mt-16 px-6 mb-16">
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">New Users</h2>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center relative">
+        New Users
+        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-indigo-500"></span>
+    </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <template x-for="user in users" :key="user.id">
-      <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-        <h3 class="text-xl font-bold text-gray-900" x-text="user.firstName + ' ' + user.lastName"></h3>
-        <p class="text-gray-600 mt-2" x-text="'Email: ' + user.email"></p>
-        <p class="text-gray-600 mt-2" x-text="'Age: ' + user.age"></p>
-        <a :href="'https://dummyjson.com/users/' + user.id" class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow">
-          View Profile
-        </a>
-      </div>
-    </template>
-  </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <template x-for="user in users" :key="user.id">
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:border-indigo-300">
+                <h3 class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors" x-text="user.firstName + ' ' + user.lastName"></h3>
+                <p class="text-gray-600 mt-2" x-text="'Email: ' + user.email"></p>
+                <p class="text-gray-600 mt-2" x-text="'Age: ' + user.age"></p>
+                <a :href="'https://dummyjson.com/users/' + user.id" 
+                   class="inline-block mt-4 px-4 py-2 bg-blue-200 text-gray-800 font-semibold rounded-lg shadow hover:bg-blue-300 transform hover:-translate-y-0.5 transition-all">
+                    View Profile
+                </a>
+            </div>
+        </template>
+    </div>
 </div>
